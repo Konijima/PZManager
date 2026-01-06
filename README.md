@@ -2,6 +2,9 @@
 
 **PZ Manager** is a powerful Python-based command-line interface (CLI) for managing Project Zomboid Dedicated Servers on Linux. It simplifies server installation, mod management, automation, and multi-instance handling.
 
+This tool is designed to work seamlessly with the **ResetZone** mod.
+*   [ResetZone Mod Repository](https://github.com/Konijima/ResetZone)
+
 ## 🚀 Key Features
 
 *   **Multi-Instance Support:** Run multiple separate server instances (e.g., specific modpacks, difficulties) on the same machine with independent configurations and saves.
