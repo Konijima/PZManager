@@ -51,11 +51,24 @@ class InteractiveMenu:
                 print()
 
             for idx, item in enumerate(self.items):
-                label = item[0] if isinstance(item, tuple) else item
+                # Handle (label, value) or (label, value, desc) or just label
+                if isinstance(item, tuple):
+                    label = item[0]
+                else:
+                    label = item
+
                 if idx == self.selected:
                     print(f"{C_GREEN}> {label}{C_RESET}")
                 else:
                     print(f"  {label}")
+
+            # Description box
+            sel_item = self.items[self.selected]
+            if isinstance(sel_item, tuple) and len(sel_item) > 2:
+                desc = sel_item[2]
+                print(f"\n{C_YELLOW}Info: {desc}{C_RESET}")
+            else:
+                print("") # Spacer
 
             print(f"\n{C_BOLD}Use Arrow Keys to Navigate, Enter to Select{C_RESET}")
 

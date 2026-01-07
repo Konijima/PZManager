@@ -19,6 +19,48 @@ This tool is designed to work seamlessly with the **ResetZone** mod.
 
 ---
 
+## 📋 Prerequisites
+
+Before installing, ensure your system has the following installed:
+*   **Python 3.6+**
+*   **curl** (required for downloading SteamCMD)
+*   **systemd** (standard on most modern Linux distros like Ubuntu/Debian)
+*   **sudo** privileges (for managing system services)
+
+You can install dependencies on Debian/Ubuntu with:
+```bash
+sudo apt update && sudo apt install python3 curl -y
+```
+
+## ⚙️ Installation
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Konijima/PZManager.git
+    cd PZManager
+    ```
+
+2.  **Make the script executable:**
+    ```bash
+    chmod +x pz_manager.py
+    ```
+
+3.  **Create a Symlink (Recommended):**
+    To use the `pz_manager` command from anywhere in your terminal, create a symbolic link to your `/usr/local/bin`:
+    ```bash
+    # Replace $(pwd) with the actual path if not currently in the directory
+    # Use -sf to overwrite if the link already exists
+    sudo ln -sf "$(pwd)/pz_manager.py" /usr/local/bin/pz_manager
+    ```
+
+4.  **Initial Setup:**
+    Run the tool for the first time to generate necessary configuration files and install SteamCMD if needed:
+    ```bash
+    pz_manager
+    ```
+
+---
+
 ## 💻 CLI Usage
 
 Once installed, you can launch the interactive menu by running:
@@ -55,7 +97,11 @@ The top bar shows your **Current Instance** (e.g., `default`, `hardcore`).
 
 ### 3. Mod Manager
 A comprehensive tool for managing content:
-*   **List Installed Mods:** See what is currently enabled.
+*   **Search & Add:** Add mods by Workshop ID or URL.
+*   **Deep Dependency Resolution:** Automatically detects, fetches, and adds required dependency mods recursively.
+*   **Smart Sorting:** Features a Topological Sort algorithm to automatically reorder your mod load order based on internal `require=` fields in `mod.info`, ensuring error-free loading.
+*   **Caching:** Caches Steam Workshop data (titles, dependencies) locally for 24 hours to speed up management.
+*   **Update Checker:** Detects if a mod has been updated on the Workshop and can auto-schedule a server restart to apply it.
 *   **Add Mod (Search/ID):** Type a name to search Workshop or paste an ID.
     *   *Note: This updates both `WorkshopItems` and `Mods` lines in your server config.*
 *   **Update Mods:** Forces a generic update of workshop content.

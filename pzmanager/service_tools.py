@@ -27,14 +27,14 @@ def manage_service_control(mgr):
         sched_action_label = "Uninstall Scheduler" if sched_installed else "Install Scheduler (Auto-Restart)"
 
         items = [
-            ("Start", '1'),
-            ("Stop", '2'),
-            ("Restart", '3'),
-            ("View Console Logs (journalctl)", '4'),
-            ("View Scheduler Logs (Activity)", '5'),
-            (svc_action_label, '6'),
-            (sched_action_label, '7'),
-            ("Back", 'b')
+            ("Start Server", '1', "Start the background service."),
+            ("Stop Server", '2', "Stop the background service."),
+            ("Restart Server", '3', "Hard restart of the service."),
+            ("Live Console Logs", '4', "View the server's output log (stdout/stderr). Press 'q' to exit."),
+            ("Scheduler Activity Logs", '5', "View the logs of the automated scheduler (restarts, backups)."),
+            (svc_action_label, '6', "Install/Uninstall the systemd .service file for the main server."),
+            (sched_action_label, '7', "Install/Uninstall the systemd .service file for the scheduler."),
+            ("Back", 'b', "Return to Main Menu.")
         ]
 
         menu = InteractiveMenu(items, title="Service Control", info_text=info, default_index=last_idx)
